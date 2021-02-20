@@ -16,21 +16,23 @@ You must have RapidIdentity deployed and accessible to clients via `https`.
 
 This SDK can be installed in client or server (node.js) using npm or yarn.
 
-```shell
+```bash
 npm install @34fame/ridjs
 ```
 
-To use the SDK simply import it into your project.
-
 ### Node.js
 
-```
+Import the SDK in Node.js.
+
+```js
 const rijs = require('@34fame/rijs')
 ```
 
 ### Client Framework
 
-```
+Import the SDK in vanilla JavaScript or framework.
+
+```js
 import rijs from '@34fame/rijs'
 ```
 
@@ -38,13 +40,13 @@ import rijs from '@34fame/rijs'
 
 ### Config
 
-Every calls requires a configuration object. This lets the SDK know where to find your instance.
+Every call requires a configuration object. This lets the SDK know where to find your instance.
 
-```
+```js
 const config = {
-   host: 'acme.rapididentity.com',  // Only include host or ip address
-   port: 443,                       // default: 443
-   token: <access_token>            // Provided by `login` endpoint
+   host: 'acme.rapididentity.com', // Only include host or ip address
+   port: 443, // default: 443
+   token: '<access_token>', // Provided by `login` endpoint
 }
 ```
 
@@ -52,7 +54,7 @@ const config = {
 
 Initiate user session with the login endpoint. It will return an access token that will be required in all future calls.
 
-```
+```js
 import rijs from '@34fame/rijs'
 
 const login = async (username, password) => {
