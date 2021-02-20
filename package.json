@@ -1,0 +1,27 @@
+{
+   "name": "@34fame/rijs",
+   "version": "0.0.1",
+   "description": "RapidIdentity Javascript SDK",
+   "main": "index.js",
+   "scripts": {
+      "test": "echo \"Error: no test specified\" && exit 1"
+   },
+   "keywords": [
+      "rapididentity",
+      "identity automation"
+   ],
+   "author": "Troy Moreland",
+   "license": "MIT",
+   "dependencies": {
+      "axios": "^0.21.1"
+   },
+   "devDependencies": {},
+   "repository": {
+      "type": "git",
+      "url": "git+https://github.com/34fame/ri-js-sdk.git"
+   },
+   "bugs": {
+      "url": "https://github.com/34fame/ri-js-sdk/issues"
+   },
+   "homepage": "https://github.com/34fame/ri-js-sdk#readme"
+}
