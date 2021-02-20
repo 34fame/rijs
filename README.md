@@ -81,13 +81,52 @@ import rijs from '@34fame/rijs'
 const logout = async () => {
    try {
       await rijs.logout(config)
-      // other logout code
       return true
    } catch (err) {
       console.error('logout error', err)
       return false
    }
 }
+```
+
+### License
+
+Retrieve the active RapidIdentity license.
+
+```js
+rijs.license(config)
+```
+
+### User Profile
+
+Retrieve the authenticated user's profile.
+
+```js
+rijs.userProfile(config)
+```
+
+### User Roles
+
+Retrieve the authenticated user's RapidIdentity roles.
+
+```js
+rijs.userRoles(config)
+```
+
+### User Applications
+
+Retrieve the authenticated user's RapidIdentity application objects.
+
+```js
+rijs.userApplications(config)
+```
+
+### Users
+
+Retrieve list of users visible to the authenticated user.
+
+```js
+rijs.users(config)
 ```
 
 ## Licensing
