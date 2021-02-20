@@ -59,10 +59,10 @@ import rijs from '@34fame/rijs'
 
 const login = async (username, password) => {
    try {
-      const token = rijs.login(RICONFIG, username, password)
+      const token = rijs.login(config, username, password)
       if (!token) return false
       config.token = token
-      // add additional token handler code
+      // other token handler code
       return token
    } catch (err) {
       console.error('login error', err)
@@ -75,13 +75,13 @@ const login = async (username, password) => {
 
 Closes user session.
 
-```
+```js
 import rijs from '@34fame/rijs'
 
 const logout = async () => {
    try {
       await rijs.logout(config)
-      // additional logout code
+      // other logout code
       return true
    } catch (err) {
       console.error('logout error', err)
