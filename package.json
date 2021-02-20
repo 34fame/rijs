@@ -18,10 +18,10 @@
    "devDependencies": {},
    "repository": {
       "type": "git",
-      "url": "git+https://github.com/34fame/ri-js-sdk.git"
+      "url": "git+https://github.com/34fame/rijs.git"
    },
    "bugs": {
-      "url": "https://github.com/34fame/ri-js-sdk/issues"
+      "url": "https://github.com/34fame/rijs/issues"
    },
-   "homepage": "https://github.com/34fame/ri-js-sdk#readme"
+   "homepage": "https://github.com/34fame/rijs#readme"
 }
