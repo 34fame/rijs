@@ -4,7 +4,10 @@
    "description": "RapidIdentity Javascript SDK",
    "main": "index.js",
    "scripts": {
-      "test": "echo \"Error: no test specified\" && exit 1"
+      "test": "echo \"Error: no test specified\" && exit 1",
+      "commit": "git add . && git commit -m 'bump'",
+      "deploy": "npm version patch && npm publish --access public",
+      "publish": "yarn run commit && yarn run deploy"
    },
    "keywords": [
       "rapididentity",
