@@ -186,20 +186,20 @@ exports.userApplications = async (config) => {
 
 exports.callApi = async (props) => {
    const { config, method, url, data } = props
+   console.log('data', data)
 
    try {
       const instance = axiosInstance(config)
       const result = await instance({
          method,
          url,
-         data,
       })
       if (result.status === 200) {
          return result.data
       }
       return false
    } catch (err) {
-      console.error(err.message)
+      console.error(err)
       return false
    }
 }
