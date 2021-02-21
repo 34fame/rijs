@@ -185,15 +185,16 @@ exports.userApplications = async (config) => {
 }
 
 exports.callApi = async (props) => {
-   const { config, method, url, body } = props
+   const { config, method, url, data } = props
 
    try {
       const instance = axiosInstance(config)
       const result = await instance({
          method,
          url,
-         body,
+         data,
       })
+      console.log('result', result)
       if (result.status === 200) {
          return result.data.applications
       }
