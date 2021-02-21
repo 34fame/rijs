@@ -6,8 +6,9 @@
    "scripts": {
       "test": "echo \"Error: no test specified\" && exit 1",
       "commit": "git add . && git commit -m 'bump'",
-      "deploy": "npm version patch && npm publish --access public",
-      "publish": "npm-run-all commit deploy"
+      "patch": "npm version patch && npm publish --access public",
+      "publish": "npm publish --access public",
+      "deploy": "npm-run-all commit patch publish"
    },
    "keywords": [
       "rapididentity",
