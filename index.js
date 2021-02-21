@@ -16,7 +16,7 @@ const axiosInstance = (props) => {
 
 /**
  * Establish a RapidIdentity session with username and password
- * and receive an authorization token.
+ * and receive an access token.
  *
  * @param {object} config - RapidIdentity configuration object
  * @param {string} config.host - The RapidIdentity host
@@ -170,10 +170,30 @@ exports.users = async (config, criteria = '**&**') => {
  *
  * @returns {object} Returns user application objects
  */
-exports.userApplications = async (config, criteria = '**&**') => {
+exports.userApplications = async (config) => {
    try {
       const instance = axiosInstance(config)
       const result = await instance.get(`/apps/my/applications`)
+      if (result.status === 200) {
+         return result.data.applications
+      }
+      return false
+   } catch (err) {
+      console.error(err.message)
+      return false
+   }
+}
+
+exports.callApi = async (props) => {
+   const { config, method, url, body } = props
+
+   try {
+      const instance = axiosInstance(config)
+      const result = await instance({
+         method,
+         url,
+         body,
+      })
       if (result.status === 200) {
          return result.data.applications
       }
