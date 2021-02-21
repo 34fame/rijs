@@ -194,13 +194,13 @@ exports.callApi = async (props) => {
          url,
          data,
       })
-      console.log('result', result)
+      if (method === 'POST') console.log('result', result)
       if (result.status === 200) {
-         return result.data.applications
+         return result.data
       }
       return false
    } catch (err) {
-      console.error(err.message)
+      console.error(err)
       return false
    }
 }
