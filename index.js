@@ -199,7 +199,7 @@ exports.callApi = async (props) => {
       }
       return false
    } catch (err) {
-      console.error(err.data.message)
+      console.error(err.message)
       return false
    }
 }
