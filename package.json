@@ -1,6 +1,6 @@
 {
    "name": "@34fame/rijs",
-   "version": "0.0.13",
+   "version": "0.0.14",
    "description": "RapidIdentity Javascript SDK",
    "main": "index.js",
    "scripts": {
