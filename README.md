@@ -129,6 +129,35 @@ Retrieve list of users visible to the authenticated user.
 rijs.users(config)
 ```
 
+### Generic API Call
+
+You can call any RapidIdentity API endpoint with `callApi`.  This way you can
+continue to use this SDK for everything.  You just need to know the endpoints
+method, url, and data requirements, most of which can be found in in your
+instances API documentation (https://host/api/rest/api-docs)
+
+```js
+// Get user applications
+rijs.callApi({
+   config,
+   method: 'get',
+   url: '/apps/v2/my/applications'
+})
+
+// Create a user (sponsorship)
+rijs.callApi({
+   config,
+   method: 'post',
+   url: '/sponsorship/sponsoredAccounts',
+   data: {
+      givenName: 'Robert',
+      surname: 'Johnson',
+      email: 'robert1970@yahoo.com',
+      sponsorDN: '<sponsorDn>',
+   }
+})
+```
+
 ## Licensing
 
 The code in this project is licensed under MIT license.
