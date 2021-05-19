@@ -37,9 +37,8 @@ exports.login = async (config, username, password) => {
          return result.data.session.token
       }
       return false
-   } catch (err) {
-      console.error(err.message)
-      return false
+   } catch (error) {
+      throw new Error(error)
    }
 }
 
@@ -60,9 +59,8 @@ exports.logout = async (config) => {
          return true
       }
       return false
-   } catch (err) {
-      console.error(err.message)
-      return false
+   } catch (error) {
+      throw new Error(error)
    }
 }
 
@@ -83,9 +81,49 @@ exports.license = async (config) => {
          return result.data.licenseInfo
       }
       return false
-   } catch (err) {
-      console.error(err.message)
+   } catch (error) {
+      throw new Error(error)
+   }
+}
+
+/**
+ *
+ * @param {object} config - RapidIdentity configuration object
+ * @param {string} config.host - The RapidIdentity host
+ * @param {string} [config.port=443] - The RapidIdentity HTTPS port
+ * @param {string} config.token - The user access token
+ *
+ * @returns {object} Returns aggregated data for user from all authorized delegations
+ */
+exports.userData = async (config, userId) => {
+   try {
+      const instance = axiosInstance(config)
+      const result = await instance.get(`/profiles/aggregated/for/${userId}`)
+      if (result.status === 200) {
+         let response = {}
+         const delegations = result.data.aggregatedDelegation.delegationProfiles
+         delegations.map((d) => {
+            if (d.delegation.id !== 'other_profiles') return false
+            d.profile.attributes.map((a) => {
+               const galId = a.id
+               const name = a.name.toLowerCase().replace(/\ /g, '_')
+               const galDef = d.delegation.attributes.find(
+                  (gal) => gal.galItem.id === galId
+               )
+               let value
+               if (!galDef.galItem.allowMultiValue) {
+                  value = a.values[0]
+               } else {
+                  value = a.values
+               }
+               response[name] = value
+            })
+         })
+         return response
+      }
       return false
+   } catch (error) {
+      throw new Error(error)
    }
 }
 
@@ -106,9 +144,8 @@ exports.userProfile = async (config) => {
          return result.data.sessionInfo.user
       }
       return false
-   } catch (err) {
-      console.error(err.message)
-      return false
+   } catch (error) {
+      throw new Error(error)
    }
 }
 
@@ -129,9 +166,8 @@ exports.userRoles = async (config) => {
          return result.data.sessionInfo.roles
       }
       return false
-   } catch (err) {
-      console.error(err.message)
-      return false
+   } catch (error) {
+      throw new Error(error)
    }
 }
 
@@ -146,17 +182,18 @@ exports.userRoles = async (config) => {
  * @returns {object} Returns users matching criteria and that the user has
  *                   access to see.
  */
-exports.users = async (config, criteria = '**&**') => {
+exports.users = async ({ config, criteria = '**&**', did = null }) => {
    try {
       const instance = axiosInstance(config)
-      const result = await instance.get(`/users?search=simple&criteria=${criteria}`)
+      let url = `/users?search=simple&criteria=${criteria}`
+      if (did) url += `&did=${did}`
+      const result = await instance.get(url)
       if (result.status === 200) {
          return result.data
       }
       return false
-   } catch (err) {
-      console.error(err.message)
-      return false
+   } catch (error) {
+      throw new Error(error)
    }
 }
 
@@ -178,9 +215,8 @@ exports.userApplications = async (config) => {
          return result.data.applications
       }
       return false
-   } catch (err) {
-      console.error(err.message)
-      return false
+   } catch (error) {
+      throw new Error(error)
    }
 }
 
@@ -198,8 +234,7 @@ exports.callApi = async (props) => {
          return result.data
       }
       return false
-   } catch (err) {
-      console.error(`Error: ${err.response.data.message}`)
-      return err.response.data.message
+   } catch (error) {
+      throw new Error(error)
    }
 }
