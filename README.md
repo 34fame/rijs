@@ -99,10 +99,18 @@ rijs.license(config)
 
 ### User Profile
 
-Retrieve the authenticated user's profile.
+Retrieve the authenticated user's profile. This is an abbreviated list of attributes to identify the user
 
 ```js
 rijs.userProfile(config)
+```
+
+### User Data
+
+Retrieve the authenticated user's data. This includes an aggregate of all attribute values from all authorized delegations. The `id` value can be retrieved from the `userProfile()` function.
+
+```js
+rijs.userData(config, id)
 ```
 
 ### User Roles
@@ -131,8 +139,8 @@ rijs.users(config)
 
 ### Generic API Call
 
-You can call any RapidIdentity API endpoint with `callApi`.  This way you can
-continue to use this SDK for everything.  You just need to know the endpoints
+You can call any RapidIdentity API endpoint with `callApi`. This way you can
+continue to use this SDK for everything. You just need to know the endpoints
 method, url, and data requirements, most of which can be found in in your
 instances API documentation (https://host/api/rest/api-docs)
 
@@ -141,7 +149,7 @@ instances API documentation (https://host/api/rest/api-docs)
 rijs.callApi({
    config,
    method: 'get',
-   url: '/apps/v2/my/applications'
+   url: '/apps/v2/my/applications',
 })
 
 // Create a user (sponsorship)
@@ -154,7 +162,7 @@ rijs.callApi({
       surname: 'Johnson',
       email: 'robert1970@yahoo.com',
       sponsorDN: '<sponsorDn>',
-   }
+   },
 })
 ```
 
